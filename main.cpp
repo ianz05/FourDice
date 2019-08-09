@@ -1,8 +1,4 @@
-#include <iostream>
-
 #include "DiceSolver.h"
-
-using namespace std;
 
 int main()
 {
