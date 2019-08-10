@@ -52,3 +52,15 @@ An example `main.cpp` is included. It contains these simple contents:
         DiceSolver solver(4, 12);
         solver.solve();
     }
+
+## Technical Details
+
+### Dependencies
+
+FourDice depends on the [Math module of Boost](https://github.com/boostorg/math) (just for the fast factorial) and [Intel TBB](https://github.com/intel/tbb) (for parallel processing)
+
+### Compiling
+
+Compiling with `main.cpp`:
+
+    g++ -O3 -Wall -o FourDice main.cpp DiceSolver.cpp -ltbb
