@@ -72,7 +72,7 @@ Unless otherwise stated, the result will have `sqrts = 0` and `facts = 0`. An ex
 
 #### Division
 
- - `L.sqrts` equals `R.sqrts` and is non-zero, and `L.facts` equals `R.facts` and is non-zero
+ - `L.sqrts` equals `R.sqrts` and is non-zero, and `L.facts` equals `R.facts` and is non-zero: INVALID
  - `L.value` equals `R.value` and either both `L.sqrts` and `R.sqrts` are non-zero or `L.facts` and `R.facts` are non-zero: INVALID
  - `L.value / R.value` is less than 0.1: INVALID
  - The result's `sqrts` is set to `L.sqrts`
@@ -80,9 +80,9 @@ Unless otherwise stated, the result will have `sqrts = 0` and `facts = 0`. An ex
 
 #### Exponentiation
 
- - `L.value` is 1 or `R.value` is greater than 6: INVALID
+ - `L.value` is 0 or 1, or `R.value` is greater than 6: INVALID
  - If `R.value` is an integer:
-   - `R.value` is 2 or 6: Decrement `L.sqrts` by 1, result uses `L.sqrts`
-   - `R.value` is 4: Decrement `L.sqrts` by 2, result uses `L.sqrts`
+   - `R.value` is 2 or 6: Decrement `L.sqrts` by 1, result uses `L.sqrts` as its `sqrts`
+   - `R.value` is 4: Decrement `L.sqrts` by 2, result uses `L.sqrts` as its `sqrts`
    - If `L.sqrts` is negative, set it to 0
  - `L.value ^ R.value` is less than 0.1: INVALID
