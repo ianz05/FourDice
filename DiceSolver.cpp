@@ -206,7 +206,7 @@ double DiceSolver::parse(const vector<int> &expr)
             switch (val) {
             case SQRT:
                 // Square root of 0 or 1
-                if (is_int(x.value) && (std::round(x.value) == 0 || std::round(x.value) == 1)) {
+                if (is_close(x.value, 0) || is_close(x.value, 1)) {
                     return INVALID_EXPR;
                 }
                 x.value = std::sqrt(x.value);
