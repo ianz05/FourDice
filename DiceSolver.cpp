@@ -294,8 +294,8 @@ double DiceSolver::parse(const vector<int> &expr)
 
                 break;
             case POW:
-                if (r.value < 0.5 || is_close(l.value, 1) || std::round(r.value) > 6) {
-                    // Avoid small exponents (like 1 / 4!) and 1 ** (large number)
+                if (is_close(l.value, 0) || is_close(l.value, 1) || std::round(r.value) > 6) {
+                    // Avoid 0 ** (complex number) and 1 ** (complex number)
                     return INVALID_EXPR;
                 } else if (is_int(r.value)) {
                     int rounded = static_cast<int>(std::round(r.value));
@@ -312,6 +312,7 @@ double DiceSolver::parse(const vector<int> &expr)
                         keep_sqrts = true;
                         l.sqrts -= 2;
                     }
+                    // Ensure sqrts is non-negative
                     if (l.sqrts < 0) {
                         l.sqrts = 0;
                     }
