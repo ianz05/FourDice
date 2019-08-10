@@ -211,6 +211,8 @@ double DiceSolver::parse(const vector<int> &expr)
                 }
                 x.value = std::sqrt(x.value);
                 ++x.sqrts;
+                // Reset factorial counter
+                x.facts = 0;
                 break;
             case FACT:
                 // Factorial of negative, large numbers, or non-integers
