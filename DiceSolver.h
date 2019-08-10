@@ -5,7 +5,6 @@
 #include <chrono>
 #include <cmath>
 #include <ctime>
-#include <exception>
 #include <iostream>
 #include <string>
 #include <utility>
