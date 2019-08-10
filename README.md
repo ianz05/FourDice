@@ -29,7 +29,7 @@ Firstly, the square roots of 0 and 1 are prohibited. The factorials of 1 and 2 a
 
 There are some strategies that are forbidden. Three such strategies are:
 
- - A excessively complex exponent of 0 or 1: for example, `1 ^ (sqrt(2) / 3!! * sqrt(4!))` to optain 1. (In this context, "complex" means using many operators, not a number with an imaginary part.)
+ - A excessively complex exponent of 0 or 1: for example, `1 ^ (sqrt(2) / 3!! * sqrt(4!))` to option 1. (In this context, "complex" means using many operators, not a number with an imaginary part.)
  - An extremely large exponent with infinite square roots: for example, `sqrt(sqrt(sqrt(... sqrt(2 / 1)))) ^ (3! * 4!)!` to obtain 2. The exponent is an absurd value, but it is "cancelled out" by a corresponding amount of square roots. 
  - Two equal numbers with subtraction/division: for example, `1 + 3!!!!! - (4 + 2)!!!!` to obtain 1. `3!` and `(4 + 2)` are equivalent, and adding the factorials after does not change the result.
 
@@ -37,7 +37,7 @@ Other strategies do exist, but they all follow one overall pattern: if the same 
 
 ### How can we prevent these strategies?
 
-It's nearly impossible to detect "if the same result can be obtained by removing any number of unary operators, the expression is illegal" in an algorithmic fashion. Instead, yhe program uses a series of rules that prevent excessive unary operators. These rules are highlighted in the **Rules** section of `Logic.md`.
+It's nearly impossible to detect "if the same result can be obtained by removing any number of unary operators, the expression is illegal" in an algorithmic fashion. Instead, the program uses a series of rules that prevent excessive unary operators. These rules are highlighted in the **Rules** section of `Logic.md`.
 
 ## Usage
 
