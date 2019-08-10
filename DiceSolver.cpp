@@ -253,7 +253,7 @@ double DiceSolver::parse(const vector<int> &expr)
                 break;
             case SUB:
                 // Condition to check excessive sqrts/factorials
-                if ((l.sqrts == r.sqrts && l.sqrts > 0 && l.facts == r.facts && l.facts > 0) || (is_close(l.value, r.value) && ((l.sqrts >= 1 && r.sqrts >= 1) || (l.facts >= 1 && r.facts >= 1)))) {
+                if (is_close(l.value, r.value) && ((l.sqrts > 0 && r.sqrts > 0) || (l.facts > 0 && r.facts > 0))) {
                     return INVALID_EXPR;
                 }
                 l.value -= r.value;
@@ -273,7 +273,7 @@ double DiceSolver::parse(const vector<int> &expr)
                 }
 
                 // Condition to check excessive sqrts/factorials
-                if ((l.sqrts == r.sqrts && l.sqrts > 0 && l.facts == r.facts && l.facts > 0) || (is_close(l.value, r.value) && ((l.sqrts >= 1 && r.sqrts >= 1) || (l.facts >= 1 && r.facts >= 1)))) {
+                if ((l.sqrts == r.sqrts && l.sqrts > 0 && l.facts == r.facts && l.facts > 0) || (is_close(l.value, r.value) && ((l.sqrts > 0 && r.sqrts > 0) || (l.facts > 0 && r.facts > 0)))) {
                     return INVALID_EXPR;
                 }
 
