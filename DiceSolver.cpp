@@ -186,14 +186,14 @@ double DiceSolver::parse(const vector<int> &expr)
     unsigned length = 0;
 
     /*
-		Logic to parse (postfix):
-		Iterate through expression, case:
-			Number: Push to stack (terms)
-			Binary Operator: Pop two terms off of stack, apply operation, push result back
-			Unary Operator: Pop one term off of stack, apply operation, push result back
-		If at any point not enough terms on stack, expression is invalid
-		Result is last term on stack
-	*/
+        Logic to parse (postfix):
+        Iterate through expression, case:
+            Number: Push to stack (terms)
+            Binary Operator: Pop two terms off of stack, apply operation, push result back
+            Unary Operator: Pop one term off of stack, apply operation, push result back
+        If at any point not enough terms on stack, expression is invalid
+        Result is last term on stack
+    */
     for (auto val : expr) {
         // Unary operators
         if (IS_UNARY(val)) {
