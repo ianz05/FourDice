@@ -41,14 +41,14 @@ The result will have its `sqrts` and `facts` copied from `X`.
 
 #### Square root
 
- - `X.value` is 0 or 1: INVALID
+ - `X.value` is 0 or 1: **INVALID**
  - Increment `X.sqrts` by 1
  - Reset `X.facts` to 0
 
 #### Factorial
 
- - `X.value` is negative, greater than 10, or a non-integer: INVALID
- - `X.value` is 1 or 2: INVALID
+ - `X.value` is negative, greater than 10, or a non-integer: **INVALID**
+ - `X.value` is 1 or 2: **INVALID**
  - Increment `X.facts` by 1
  - Reset `X.sqrts` to 0
 
@@ -64,25 +64,28 @@ Unless otherwise stated, the result will have `sqrts = 0` and `facts = 0`. An ex
 
 #### Subtraction
 
- - `L.value` equals `R.value` and either both `L.sqrts` and `R.sqrts` are non-zero or `L.facts` and `R.facts` are non-zero: INVALID
+ - `L.value` equals `R.value` and either both `L.sqrts` and `R.sqrts` are non-zero or `L.facts` and `R.facts` are non-zero: **INVALID**
 
 #### Multiplication
 
- - `L.value * R.value` is 1 and both `L.sqrts` and `R.sqrts` are non-zero: INVALID
+ - `L.value * R.value` is 1 and both `L.sqrts` and `R.sqrts` are non-zero: **INVALID**
 
 #### Division
 
- - `L.sqrts` equals `R.sqrts` and is non-zero, and `L.facts` equals `R.facts` and is non-zero: INVALID
- - `L.value` equals `R.value` and either both `L.sqrts` and `R.sqrts` are non-zero or `L.facts` and `R.facts` are non-zero: INVALID
- - `L.value / R.value` is less than 0.1: INVALID
+ - `L.sqrts` equals `R.sqrts` and is non-zero, and `L.facts` equals `R.facts` and is non-zero: **INVALID**
+ - `L.value` equals `R.value` and either both `L.sqrts` and `R.sqrts` are non-zero or `L.facts` and `R.facts` are non-zero: **INVALID**
+ - `L.value / R.value` is less than 0.1: **INVALID**
  - The result's `sqrts` is set to `L.sqrts`
  - `L.value` is a non-integer and `L.sqrts` is non-zero, or `R.value` is a non-integer and `R.sqrts` is non-zero: The result's `sqrts` is the greater of `L.sqrts` and `R.sqrts`
 
 #### Exponentiation
 
- - `L.value` is 0 or 1, or `R.value` is greater than 6: INVALID
+ - `L.value` is 0 or 1, or `R.value` is greater than 6: **INVALID**
  - If `R.value` is an integer:
-   - `R.value` is 2 or 6: Decrement `L.sqrts` by 1, result uses `L.sqrts` as its `sqrts`
+   - `R.value` is 2: Decrement `L.sqrts` by 1, result uses `L.sqrts` as its `sqrts`
    - `R.value` is 4: Decrement `L.sqrts` by 2, result uses `L.sqrts` as its `sqrts`
+   - `R.value` is 6:
+     - `R.facts` is 1 and `L.sqrts` is at least 1: **INVALID**
+     - Decrement `L.sqrts` by 1, result uses `L.sqrts` as its `sqrts`
    - If `L.sqrts` is negative, set it to 0
- - `L.value ^ R.value` is less than 0.1: INVALID
+ - `L.value ^ R.value` is less than 0.1: **INVALID**

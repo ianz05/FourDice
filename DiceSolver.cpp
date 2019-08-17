@@ -303,7 +303,7 @@ double DiceSolver::parse(const vector<int> &expr)
                         // Exponent of 1 allowed, early exit because the number is unchanged
                         keep_sqrts = true;
                         break;
-                    } else if (rounded == 2 || rounded == 6) {
+                    } else if (rounded == 2) {
                         // Square of number
                         keep_sqrts = true;
                         --l.sqrts;
@@ -311,6 +311,14 @@ double DiceSolver::parse(const vector<int> &expr)
                         // Square of square of number
                         keep_sqrts = true;
                         l.sqrts -= 2;
+                    } else if (rounded == 6) {
+                        // v2 ** 3! == 2 ** 3
+                        if (r.facts == 1 && l.sqrts > 0) {
+                            return INVALID_EXPR;
+                        }
+                        // 6 is even, so 1 sqrt is "cancelled out"
+                        keep_sqrts = true;
+                        --l.sqrts;
                     }
                     // Ensure sqrts is non-negative
                     if (l.sqrts < 0) {
