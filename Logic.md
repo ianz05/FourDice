@@ -16,7 +16,7 @@ Scores are stored in score arrays of type `std::array<std::pair<double, std::vec
 
 ## Generating permutations
 
- 1. Each combination of 3 binary operators is stored. Division and exponentiation are allowed to appear 3 times, but addition, subtraction, and multiplication are only allowed to appear 1 time each.
+ 1. Each combination of 3 binary operators is stored. Each combination must have at least one division or exponentiation.
  2. Starting at the minimum number of operators and ending at the maximum number of operators, we iterate through and compute each possible number of operators sequentially. In other words, we start with, say, 4 operators, which means only 1 unary operator, and end at, say, 9, which means 6 unary operators.
  3. Combinations of the specified number of unary operators are created. Because there are only two, repetition is allowed, and order does not matter, there are `n + 1` combinations for `n` unary operators.
  4. The numbers (`1, 2, 3, 4`), a combination of binary operators, and a combination of unary operators are concatenated. All permutations of this combined sequence are iterated over and parsed.

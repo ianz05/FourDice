@@ -33,11 +33,13 @@ void DiceSolver::solve()
 
     // partials includes combinations with numbers and binary operators
     vector<vector<int>> partials;
-    for_each_combination(vector<int>{ADD, SUB, MUL, DIV, DIV, DIV, POW, POW, POW}, n, [&](const vector<int> &bops) {
-        vector<int> partial(nums.begin(), nums.end());
-        partial.insert(partial.end(), bops.begin(), bops.end());
-        std::sort(partial.begin(), partial.end());
-        partials.push_back(partial);
+    for_each_combination(vector<int>{ADD, ADD, SUB, SUB, MUL, MUL, DIV, DIV, DIV, POW, POW, POW}, n, [&](const vector<int> &bops) {
+        if (std::round(get_score(bops)) >= 2.0) {
+            vector<int> partial(nums.begin(), nums.end());
+            partial.insert(partial.end(), bops.begin(), bops.end());
+            std::sort(partial.begin(), partial.end());
+            partials.push_back(partial);
+        }
     });
 
     // Get rid of duplicates
