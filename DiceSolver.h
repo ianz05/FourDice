@@ -47,6 +47,7 @@ private:
         double value;
         int sqrts;
         int facts;
+        bool powed;
     };
     static double parse(const std::vector<int> &expr);
     static double get_score(const std::vector<int> &expr);

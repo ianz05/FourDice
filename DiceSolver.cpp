@@ -208,9 +208,10 @@ double DiceSolver::parse(const vector<int> &expr)
             switch (val) {
             case SQRT:
                 // Square root of 0 or 1
-                if (is_close(x.value, 0) || is_close(x.value, 1)) {
+                if (is_close(x.value, 0) || is_close(x.value, 1) || x.powed) {
                     return INVALID_EXPR;
                 }
+
                 x.value = std::sqrt(x.value);
                 ++x.sqrts;
                 // Reset factorial counter
@@ -235,6 +236,7 @@ double DiceSolver::parse(const vector<int> &expr)
                 ++x.facts;
                 // Reset sqrt counter
                 x.sqrts = 0;
+                x.powed = false;
                 break;
             }
             // Binary operators
@@ -253,6 +255,12 @@ double DiceSolver::parse(const vector<int> &expr)
             bool keep_sqrts = false;
             switch (val) {
             case ADD:
+                if (is_close(r.value, 0)) {
+                    keep_sqrts = true;
+                    break;
+                }
+                l.powed = false;
+
                 l.value += r.value;
                 break;
             case SUB:
@@ -260,9 +268,21 @@ double DiceSolver::parse(const vector<int> &expr)
                 if (is_close(l.value, r.value) && ((l.sqrts > 0 && r.sqrts > 0) || (l.facts > 0 && r.facts > 0))) {
                     return INVALID_EXPR;
                 }
+                if (is_close(r.value, 0)) {
+                    keep_sqrts = true;
+                    break;
+                }
+                l.powed = false;
+
                 l.value -= r.value;
                 break;
             case MUL:
+                if (is_close(r.value, 1)) {
+                    keep_sqrts = true;
+                    break;
+                }
+                l.powed = false;
+
                 l.value *= r.value;
                 // Excessive square roots when the product is 1
                 if (is_close(l.value, 1) && l.sqrts >= 1 && r.sqrts >= 1) {
@@ -275,6 +295,7 @@ double DiceSolver::parse(const vector<int> &expr)
                     keep_sqrts = true;
                     break;
                 }
+                l.powed = false;
 
                 // Condition to check excessive sqrts/factorials
                 if ((l.sqrts == r.sqrts && l.sqrts > 0 && l.facts == r.facts && l.facts > 0) || (is_close(l.value, r.value) && ((l.sqrts > 0 && r.sqrts > 0) || (l.facts > 0 && r.facts > 0)))) {
@@ -336,6 +357,8 @@ double DiceSolver::parse(const vector<int> &expr)
                     return INVALID_EXPR;
                 }
 
+                l.powed = true;
+
                 break;
             }
             // If there was a change in the value
@@ -351,6 +374,7 @@ double DiceSolver::parse(const vector<int> &expr)
             n.value = val;
             n.sqrts = 0;
             n.facts = 0;
+            n.powed = false;
         }
     }
 

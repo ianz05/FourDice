@@ -4,12 +4,13 @@
 
 Expressions are stored as `std::vector<int>`, with the numbers being exactly what they are, and operators being defined negative numbers.
 
-Terms are stored as a POD struct with three data members:
+Terms are stored as a POD struct with four data members:
 
     struct Term {
         double value;
         int sqrts;
         int facts;
+        bool powed;
     };
 
 Scores are stored in score arrays of type `std::array<std::pair<double, std::vector<int>>, MAX + 1>`, with `MAX` being `20` in our case.
@@ -42,6 +43,7 @@ The result will have its `sqrts` and `facts` copied from `X`.
 #### Square root
 
  - `X.value` is 0 or 1: **INVALID**
+ - `X.powed` is true: **INVALID**
  - Increment `X.sqrts` by 1
  - Reset `X.facts` to 0
 
@@ -51,12 +53,13 @@ The result will have its `sqrts` and `facts` copied from `X`.
  - `X.value` is 1 or 2: **INVALID**
  - Increment `X.facts` by 1
  - Reset `X.sqrts` to 0
+ - Reset `X.powed` to false
 
 ### Binary operations
 
 `L` = left operand, `R` = right operand
 
-Unless otherwise stated, the result will have `sqrts = 0` and `facts = 0`. An exception is if the operation did not change the value, e.g. multiplying by 1 or adding 0. 
+Unless otherwise stated, the result will have `sqrts = 0` and `facts = 0`. Any operation other than exponentiation will cause `powed = false`. An exception is if the operation did not change the value, e.g. multiplying by 1 or adding 0.
 
 #### Addition
 
@@ -89,3 +92,4 @@ Unless otherwise stated, the result will have `sqrts = 0` and `facts = 0`. An ex
      - Decrement `L.sqrts` by 1, result uses `L.sqrts` as its `sqrts`
    - If `L.sqrts` is negative, set it to 0
  - `L.value ^ R.value` is less than 0.1: **INVALID**
+ - Set the result's `powed` to true
