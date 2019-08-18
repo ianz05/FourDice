@@ -296,8 +296,9 @@ double DiceSolver::parse(const vector<int> &expr)
 
                 break;
             case POW:
-                if (is_close(l.value, 0) || is_close(l.value, 1) || std::round(r.value) > 6) {
+                if (is_close(l.value, 0) || is_close(l.value, 1) || std::round(r.value) > 12) {
                     // Avoid 0 ** (complex number) and 1 ** (complex number)
+                    // Also disallow large exponents
                     return INVALID_EXPR;
                 } else if (is_int(r.value)) {
                     int rounded = static_cast<int>(std::round(r.value));
