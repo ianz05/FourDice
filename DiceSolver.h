@@ -18,18 +18,18 @@
 #include <tbb/concurrent_vector.h>
 #include <tbb/parallel_for_each.h>
 
-#define ADD -1
-#define SUB -2
-#define MUL -3
-#define DIV -4
-#define POW -5
-#define IS_BINARY(x) ((x >= POW) && (x <= ADD))
+#define ADD (-1)
+#define SUB (-2)
+#define MUL (-3)
+#define DIV (-4)
+#define POW (-5)
+#define IS_BINARY(x) (((x) >= POW) && ((x) <= ADD))
 
-#define SQRT -6
-#define FACT -7
-#define IS_UNARY(x) ((x == SQRT) || (x == FACT))
+#define SQRT (-6)
+#define FACT (-7)
+#define IS_UNARY(x) (((x) == SQRT) || ((x) == FACT))
 
-#define INVALID_EXPR -1
+#define INVALID_EXPR (-1)
 
 #define MAX 20
 
