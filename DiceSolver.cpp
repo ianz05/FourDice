@@ -317,7 +317,7 @@ double DiceSolver::parse(const vector<int> &expr)
 
                 break;
             case POW:
-                if (is_close(l.value, 0) || is_close(l.value, 1) || std::round(r.value) > 12) {
+                if (is_close(l.value, 0) || is_close(l.value, 1) || std::round(r.value) >= 32) {
                     // Avoid 0 ** (complex number) and 1 ** (complex number)
                     // Also disallow large exponents
                     return INVALID_EXPR;
@@ -343,7 +343,12 @@ double DiceSolver::parse(const vector<int> &expr)
                         // 6 is even, so 1 sqrt is "cancelled out"
                         keep_sqrts = true;
                         --l.sqrts;
+                    } else if (rounded == 24) {
+                        // 24 is divisible by 4, so 2 sqrts are "cancelled out"
+                        keep_sqrts = true;
+                        l.sqrts -= 2;
                     }
+
                     // Ensure sqrts is non-negative
                     if (l.sqrts < 0) {
                         l.sqrts = 0;
